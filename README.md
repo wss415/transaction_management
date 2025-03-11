@@ -46,3 +46,20 @@ The service uses the CQRS architecture, which separates commands from queries.
 * **query** query methods are side-effect free and do not affect the state of the system. Therefore, the query logic
   only reaches the application layer and does not descend to the domain layer. The query logic can be implemented using
   various techniques such as join table queries with various SQL.
+
+## Project Dependency
+
+```
+org.projectlombok:lombok # use to generate object setter,getter and constructor etc.
+```
+
+## Project startup
+
+```shell
+# first, enter project root path
+cd transaction
+
+# second，run build-startup.sh. 
+# execute 'chmod +x build-startup.sh' if necessary
+./build-startup.sh
+```
