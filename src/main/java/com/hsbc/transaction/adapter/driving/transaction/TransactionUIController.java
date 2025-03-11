@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @since 2025/3/10 23:56
  **/
 @Controller
-@RequestMapping("/transactions")
+@RequestMapping(value = {"/","/transactions"})
 @RequiredArgsConstructor
 public class TransactionUIController {
 

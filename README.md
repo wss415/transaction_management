@@ -64,3 +64,10 @@ cd transaction
 # execute 'chmod +x build-startup.sh' if necessary
 ./build-startup.sh
 ```
+
+## Visit Web Site
+```shell
+http://localhost:8080/
+http://localhost:8080/transactions
+http://localhost:8080/transactions?pageIndex=1&pageSize=10
+```
