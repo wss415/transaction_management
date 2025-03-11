@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Transaction Management</title>
+    <link th:href="@{/bootstrap.min.css(v=5.1.3)}" rel="stylesheet">
+    <style>
+        .transaction-table {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .income {
+            color: #28a745;
+        }
+
+        .expense {
+            color: #dc3545;
+        }
+
+        .action-btns {
+            min-width: 160px;
+        }
+
+        .pagination {
+            flex-wrap: wrap;
+        }
+
+        .page-item.disabled .page-link {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .page-item.active .page-link {
+            background: #007bff;
+            border-color: #007bff;
+        }
+
+        .page-link {
+            min-width: 40px;
+            text-align: center;
+            margin: 2px;
+            border-radius: 4px !important;
+        }
+
+        .page-link:hover {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body class="bg-light">
+<div class="container py-5">
+    <!-- 头部和新增按钮 -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3">Transaction Management</h1>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">
+            Add New Transaction
+        </button>
+    </div>
+
+    <!-- 交易表格 -->
+    <table class="table table-striped transaction-table">
+        <thead class="table-dark">
+        <tr>
+            <th>Amount</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Create Time</th>
+            <th>Update Time</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="t : ${page.items}">
+            <input class="data-id" th:value="${t.id}" type="hidden"/>
+            <td>$<span th:text="${#numbers.formatDecimal(t.amount, 1, 2)}"></span></td>
+            <td>
+                    <span th:class="${t.type == 'INCOME' ? 'income' : 'expense'}"
+                          th:text="${t.type}"></span>
+            </td>
+            <td th:text="${t.description}"></td>
+            <td th:text="${#temporals.format(t.createAt, 'yyyy-MM-dd HH:mm')}"></td>
+            <td th:text="${#temporals.format(t.lastUpdateAt, 'yyyy-MM-dd HH:mm')}"></td>
+            <td class="action-btns">
+                <button class="btn btn-sm btn-warning"
+                        onclick="openEditModal(this)">Edit
+                </button>
+                <button class="btn btn-sm btn-danger"
+                        onclick="confirmDelete(this)">Delete
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- 分页 -->
+    <!-- 分页优化版本 -->
+    <nav th:if="${page.totalPages > 1}">
+        <ul class="pagination justify-content-center">
+            <!-- 上一页 -->
+            <li class="page-item" th:classappend="${page.currentPage == 1} ? 'disabled'">
+                <a class="page-link"
+                   th:href="@{/transactions(pageIndex=${page.currentPage-1}, pageSize=${page.pageSize})}">
+                    &laquo;
+                </a>
+            </li>
+
+            <!-- 智能页码生成 -->
+            <li th:each="pageNum : ${T(com.hsbc.transaction.common.PaginationUtil).generatePagination(page.currentPage, page.totalPages)}"
+                class="page-item"
+                th:classappend="${pageNum == page.currentPage} ? 'active'">
+
+                <a th:if="${pageNum != null}"
+                   class="page-link"
+                   th:href="@{/transactions(pageIndex=${pageNum}, pageSize=${page.pageSize})}"
+                   th:text="${pageNum}"></a>
+
+                <span th:if="${pageNum == null}" class="page-link">...</span>
+            </li>
+
+            <!-- 下一页 -->
+            <li class="page-item" th:classappend="${page.currentPage == page.totalPages} ? 'disabled'">
+                <a class="page-link"
+                   th:href="@{/transactions(pageIndex=${page.currentPage+1}, pageSize=${page.pageSize})}">
+                    &raquo;
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<!-- 编辑/新增模态框 -->
+<div class="modal fade" id="editModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form th:action="@{/api/v1/transactions}" method="post" id="transactionForm">
+                <div class="modal-header">
+                    <h5 class="modal-title">Transaction Form</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="transactionId">
+                    <div class="mb-3">
+                        <label class="form-label">Amount</label>
+                        <input type="number" class="form-control" name="amount"
+                               step="0.01" min="0" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Type</label>
+                        <select class="form-select" name="type" required>
+                            <option value="INCOME">Income</option>
+                            <option value="EXPENSE">Expense</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Description</label>
+                        <textarea class="form-control" name="description"
+                                  rows="3" maxlength="202"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script th:src="@{/bootstrap.min.js(v=5.1.3)}"></script>
+<script>
+    // 处理编辑操作
+    function openEditModal(self) {
+        const dataIdInput = self.closest("tr").querySelectorAll("input.data-id");
+        const id = dataIdInput[0].value;
+        fetch(`/api/v1/transactions/${id}`)
+            .then(response => {
+                if (response.ok) {
+                    response.json()
+                } else {
+                    alert(response.body);
+                }
+            })
+            .then(data => {
+                document.getElementById('transactionId').value = data.id;
+                document.querySelector('input[name="amount"]').value = data.amount;
+                document.querySelector('select[name="type"]').value = data.type;
+                document.querySelector('textarea[name="description"]').value = data.description;
+
+                const modal = new bootstrap.Modal('#editModal');
+                modal.show();
+            });
+    }
+
+    // 处理删除操作
+    function confirmDelete(self) {
+        const dataIdInput = self.closest("tr").querySelectorAll("input.data-id");
+        const id = dataIdInput[0].value;
+        if (confirm('Are you sure to delete this transaction?')) {
+            fetch(`/api/v1/transactions/${id}`, {method: 'DELETE'})
+                .then(response => {
+                    if (response.ok) {
+                        window.location.reload();
+                    } else {
+                        alert(response.body);
+                    }
+                });
+        }
+    }
+
+    // 处理表单提交
+    document.getElementById('transactionForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        const id = formData.get('id');
+        const method = id ? 'PUT' : 'POST';
+        const url = id ? `/api/v1/transactions/${id}` : '/api/v1/transactions';
+
+        fetch(url, {
+            method: method,
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(Object.fromEntries(formData))
+        })
+            .then(response => {
+                console.log(response)
+                if (response.ok) {
+                    window.location.reload();
+                } else {
+                    alert(response.json());
+                }
+            });
+    });
+</script>
+</body>
+</html>
