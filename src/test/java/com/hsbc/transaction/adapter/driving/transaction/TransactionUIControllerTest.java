@@ -47,7 +47,7 @@ class TransactionUIControllerTest {
             = new PageableResult<>(1, 2, 2, Collections.emptyList());
         when(transactionQueryService.queryPageableTransaction(1, 2)).thenReturn(pageableResult);
 
-        mockMvc.perform(get("/transactions"))
+        mockMvc.perform(get("/transactions?pageIndex=1&pageSize=2"))
             .andExpect(status().isOk())
             .andExpect(view().name("transaction-list"));
     }
