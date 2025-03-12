@@ -57,12 +57,17 @@ org.projectlombok:lombok # use to generate object setter,getter and constructor 
 ## Project startup
 
 ```shell
-# first, enter project root path
-cd transaction
+# enter project root path
+cd transaction_management
 
-# second，run build-startup.sh. 
-# execute 'chmod +x build-startup.sh' if necessary
+# execute 'chmod' to take build-startup.sh executable
+chmod +x build-startup.sh
+
+# run build-startup.sh
 ./build-startup.sh
+
+# check service container state
+docker ps | grep 'transaction'
 ```
 
 ## Visit Web Site
