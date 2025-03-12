@@ -40,7 +40,7 @@ charts or filled areas).
  */
 (function ($) {
     var options = {
-        series: {stack: null} // or number/string
+        series: { stack: null } // or number/string
     };
 
     function init(plot) {
@@ -53,8 +53,8 @@ charts or filled areas).
                 return;
 
             var newPoints = [];
-
-            for (var i = 0; i < datapoints.points.length; i += 3) {
+    
+            for (var i=0; i <  datapoints.points.length; i += 3) {
 
                 if (!stackBases[datapoints.points[i]]) {
                     stackBases[datapoints.points[i]] = 0;
@@ -65,13 +65,12 @@ charts or filled areas).
                 // you'd want the new points to be (x, y1, 0), (x, y1+y2, y1), (x,y1+y2+y3, y1+y2)
                 // generally, (x, thisValue + (base up to this point), + (base up tothis point))
                 newPoints[i] = datapoints.points[i];
-                newPoints[i + 1] = datapoints.points[i + 1] + stackBases[datapoints.points[i]];
-                newPoints[i + 2] = stackBases[datapoints.points[i]];
-                stackBases[datapoints.points[i]] += datapoints.points[i + 1];
+                newPoints[i+1] = datapoints.points[i+1] + stackBases[datapoints.points[i]];
+                newPoints[i+2] = stackBases[datapoints.points[i]];
+                stackBases[datapoints.points[i]] += datapoints.points[i+1];
             }
             datapoints.points = newPoints;
         }
-
         plot.hooks.processDatapoints.push(stackData);
     }
 

@@ -16,34 +16,35 @@
 */
 
 
-$(document).ready(function () {
-    $(".click-title").mouseenter(function (e) {
+    
+$(document).ready(function() {
+    $(".click-title").mouseenter( function(    e){
         e.preventDefault();
-        this.style.cursor = "pointer";
+        this.style.cursor="pointer";
     });
-    $(".click-title").mousedown(function (event) {
+    $(".click-title").mousedown( function(event){
         event.preventDefault();
     });
-
-
+    
+        
     $(".portlet-header").css("cursor", "auto");
 });
 
 
-function collapse(elem, collapsed) {
-    if (collapsed) {
+function collapse(elem, collapsed){
+    if(collapsed){
         $(elem).parent().find(".fa-chevron-up").removeClass("fa-chevron-up").addClass("fa-chevron-down");
-    } else {
+    }else{
         $(elem).parent().find(".fa-chevron-down").removeClass("fa-chevron-down").addClass("fa-chevron-up");
-
+    
     }
 }
 
-function toggleAll(id, checked) {
+function toggleAll(id, checked){
     var placeholder = document.getElementById(id);
     var cases = $(placeholder).find(':checkbox');
     cases.prop('checked', checked);
     $(cases).parent().children().children().toggleClass("legend-disabled", !checked);
     var choiceContainer;
-
+    
 }

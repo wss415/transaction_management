@@ -22,11 +22,13 @@
     font-weight: bold;
 }
 
-.panel-footer {
+.panel-footer
+{
 
 }
 
-.subLegend {
+.subLegend
+{
 
 }
 
@@ -43,13 +45,14 @@
     font-family: Open sans;
     /*width: 200px;*/
 }
-
-li {
-    list-style-type: none;
+li
+{
+    list-style-type:none;
     display: inline-block;
 }
 
-.nav-third-level {
+.nav-third-level
+{
     font-size: 12px;
 }
 

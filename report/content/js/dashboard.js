@@ -69,7 +69,7 @@ function createTable(table, info, formatter, defaultSorts, seriesIndex, headerCr
     var header = tableRef.createTHead();
 
     // Call callback is available
-    if (headerCreator) {
+    if(headerCreator) {
         headerCreator(header);
     }
 
@@ -83,15 +83,15 @@ function createTable(table, info, formatter, defaultSorts, seriesIndex, headerCr
     var tBody;
 
     // Create overall body if defined
-    if (info.overall) {
+    if(info.overall){
         tBody = document.createElement('tbody');
         tBody.className = "tablesorter-no-sort";
         tableRef.appendChild(tBody);
         var newRow = tBody.insertRow(-1);
         var data = info.overall.data;
-        for (var index = 0; index < data.length; index++) {
+        for(var index=0;index < data.length; index++){
             var cell = newRow.insertCell(-1);
-            cell.innerHTML = formatter ? formatter(index, data[index]) : data[index];
+            cell.innerHTML = formatter ? formatter(index, data[index]): data[index];
         }
     }
 
@@ -100,18 +100,18 @@ function createTable(table, info, formatter, defaultSorts, seriesIndex, headerCr
     tableRef.appendChild(tBody);
 
     var regexp;
-    if (seriesFilter) {
+    if(seriesFilter) {
         regexp = new RegExp(seriesFilter, 'i');
     }
     // Populate body with data.items array
-    for (var index = 0; index < info.items.length; index++) {
+    for(var index=0; index < info.items.length; index++){
         var item = info.items[index];
-        if ((!regexp || filtersOnlySampleSeries && !info.supportsControllersDiscrimination || regexp.test(item.data[seriesIndex]))
-            &&
-            (!showControllersOnly || !info.supportsControllersDiscrimination || item.isController)) {
-            if (item.data.length > 0) {
+        if((!regexp || filtersOnlySampleSeries && !info.supportsControllersDiscrimination || regexp.test(item.data[seriesIndex]))
+                &&
+                (!showControllersOnly || !info.supportsControllersDiscrimination || item.isController)){
+            if(item.data.length > 0) {
                 var newRow = tBody.insertRow(-1);
-                for (var col = 0; col < item.data.length; col++) {
+                for(var col=0; col < item.data.length; col++){
                     var cell = newRow.insertCell(-1);
                     cell.innerHTML = formatter ? formatter(col, item.data[col]) : item.data[col];
                 }
@@ -120,72 +120,61 @@ function createTable(table, info, formatter, defaultSorts, seriesIndex, headerCr
     }
 
     // Add support of columns sort
-    table.tablesorter({sortList: defaultSorts});
+    table.tablesorter({sortList : defaultSorts});
 }
 
-$(document).ready(function () {
+$(document).ready(function() {
 
     // Customize table sorter default options
-    $.extend($.tablesorter.defaults, {
+    $.extend( $.tablesorter.defaults, {
         theme: 'blue',
         cssInfoBlock: "tablesorter-no-sort",
         widthFixed: true,
         widgets: ['zebra']
     });
 
-    var data = {"OkPercent": 100.0, "KoPercent": 0.0};
+    var data = {"OkPercent": 98.59633333333333, "KoPercent": 1.4036666666666666};
     var dataset = [
         {
-            "label": "FAIL",
-            "data": data.KoPercent,
-            "color": "#FF6347"
+            "label" : "FAIL",
+            "data" : data.KoPercent,
+            "color" : "#FF6347"
         },
         {
-            "label": "PASS",
-            "data": data.OkPercent,
-            "color": "#9ACD32"
+            "label" : "PASS",
+            "data" : data.OkPercent,
+            "color" : "#9ACD32"
         }];
     $.plot($("#flot-requests-summary"), dataset, {
-        series: {
-            pie: {
-                show: true,
-                radius: 1,
-                label: {
-                    show: true,
-                    radius: 3 / 4,
-                    formatter: function (label, series) {
+        series : {
+            pie : {
+                show : true,
+                radius : 1,
+                label : {
+                    show : true,
+                    radius : 3 / 4,
+                    formatter : function(label, series) {
                         return '<div style="font-size:8pt;text-align:center;padding:2px;color:white;">'
                             + label
                             + '<br/>'
                             + Math.round10(series.percent, -2)
                             + '%</div>';
                     },
-                    background: {
-                        opacity: 0.5,
-                        color: '#000'
+                    background : {
+                        opacity : 0.5,
+                        color : '#000'
                     }
                 }
             }
         },
-        legend: {
-            show: true
+        legend : {
+            show : true
         }
     });
 
     // Creates APDEX table
-    createTable($("#apdexTable"), {
-        "supportsControllersDiscrimination": true,
-        "overall": {"data": [0.04335, 500, 1500, "Total"], "isController": false},
-        "titles": ["Apdex", "T (Toleration threshold)", "F (Frustration threshold)", "Label"],
-        "items": [{
-            "data": [1.0E-4, 500, 1500, "HTTP Request_query"],
-            "isController": false
-        }, {
-            "data": [0.0731, 500, 1500, "HTTP Request_update"],
-            "isController": false
-        }, {"data": [0.05685, 500, 1500, "HTTP Request_create"], "isController": false}]
-    }, function (index, item) {
-        switch (index) {
+    createTable($("#apdexTable"), {"supportsControllersDiscrimination": true, "overall": {"data": [0.8144133333333333, 500, 1500, "Total"], "isController": false}, "titles": ["Apdex", "T (Toleration threshold)", "F (Frustration threshold)", "Label"], "items": [{"data": [0.79467, 500, 1500, "HTTP Request_query"], "isController": false}, {"data": [0.827065, 500, 1500, "HTTP Request_update"], "isController": false}, {"data": [0.821505, 500, 1500, "HTTP Request_create"], "isController": false}]}, function(index, item){
+        switch(index){
             case 0:
                 item = item.toFixed(3);
                 break;
@@ -198,25 +187,8 @@ $(document).ready(function () {
     }, [[0, 0]], 3);
 
     // Create statistics table
-    createTable($("#statisticsTable"), {
-        "supportsControllersDiscrimination": true,
-        "overall": {
-            "data": ["Total", 30000, 0, 0.0, 28929.57623333336, 0, 99459, 32802.5, 65181.9, 77343.9, 93571.81000000003, 58.47474475773913, 296.6614834287446, 14.825984108635355],
-            "isController": false
-        },
-        "titles": ["Label", "#Samples", "FAIL", "Error %", "Average", "Min", "Max", "Median", "90th pct", "95th pct", "99th pct", "Transactions/s", "Received", "Sent"],
-        "items": [{
-            "data": ["HTTP Request_query", 10000, 0, 0.0, 41378.86150000011, 327, 99459, 40450.0, 71439.79999999999, 81517.09999999996, 96542.67, 19.494887465762105, 282.28762109675796, 3.615130789372362],
-            "isController": false
-        }, {
-            "data": ["HTTP Request_update", 10000, 0, 0.0, 18112.953600000037, 0, 83675, 11671.5, 43968.8, 53517.649999999994, 77142.21999999999, 21.058439274831585, 6.988905262556621, 5.429128875542518],
-            "isController": false
-        }, {
-            "data": ["HTTP Request_create", 10000, 0, 0.0, 27296.913599999967, 0, 83697, 26166.5, 54285.8, 65029.799999999996, 80041.7, 22.149326328239727, 9.03723445380315, 7.029815485037022],
-            "isController": false
-        }]
-    }, function (index, item) {
-        switch (index) {
+    createTable($("#statisticsTable"), {"supportsControllersDiscrimination": true, "overall": {"data": ["Total", 300000, 4211, 1.4036666666666666, 504.073606666662, 0, 13318, 570.0, 1146.0, 1321.0, 1782.9900000000016, 2317.6940489342473, 12317.222135644011, 578.9136648102582], "isController": false}, "titles": ["Label", "#Samples", "FAIL", "Error %", "Average", "Min", "Max", "Median", "90th pct", "95th pct", "99th pct", "Transactions/s", "Received", "Sent"], "items": [{"data": ["HTTP Request_query", 100000, 942, 0.942, 527.8318899999987, 1, 10050, 1005.0, 2412.9000000000015, 2658.9500000000007, 3272.980000000003, 789.2348368256975, 11936.705061708299, 144.97703665749182], "isController": false}, {"data": ["HTTP Request_update", 100000, 1388, 1.388, 473.29202000000294, 0, 9711, 908.0, 2213.9000000000015, 2400.0, 3095.970000000005, 789.2036934732854, 288.91722948810275, 200.6424611317181], "isController": false}, {"data": ["HTTP Request_create", 100000, 1881, 1.881, 511.0969100000007, 0, 13318, 874.5, 2082.0, 2374.0, 3099.0, 772.672132034214, 349.8659338394658, 240.62002441402478], "isController": false}]}, function(index, item){
+        switch(index){
             // Errors pct
             case 3:
                 item = item.toFixed(2) + '%';
@@ -237,7 +209,7 @@ $(document).ready(function () {
             case 12:
             // Kbytes/s
             case 13:
-                // Sent Kbytes/s
+            // Sent Kbytes/s
                 item = item.toFixed(2);
                 break;
         }
@@ -245,12 +217,8 @@ $(document).ready(function () {
     }, [[0, 0]], 0, summaryTableHeader);
 
     // Create error table
-    createTable($("#errorsTable"), {
-        "supportsControllersDiscrimination": false,
-        "titles": ["Type of error", "Number of errors", "% in errors", "% in all samples"],
-        "items": []
-    }, function (index, item) {
-        switch (index) {
+    createTable($("#errorsTable"), {"supportsControllersDiscrimination": false, "titles": ["Type of error", "Number of errors", "% in errors", "% in all samples"], "items": [{"data": ["Non HTTP response code: org.apache.http.conn.HttpHostConnectException/Non HTTP response message: Connect to localhost:8080 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect", 4211, 100.0, 1.4036666666666666], "isController": false}]}, function(index, item){
+        switch(index){
             case 2:
             case 3:
                 item = item.toFixed(2) + '%';
@@ -259,16 +227,8 @@ $(document).ready(function () {
         return item;
     }, [[1, 1]]);
 
-    // Create top5 errors by sampler
-    createTable($("#top5ErrorsBySamplerTable"), {
-        "supportsControllersDiscrimination": false,
-        "overall": {"data": ["Total", 30000, 0, "", "", "", "", "", "", "", "", "", ""], "isController": false},
-        "titles": ["Sample", "#Samples", "#Errors", "Error", "#Errors", "Error", "#Errors", "Error", "#Errors", "Error", "#Errors", "Error", "#Errors"],
-        "items": [{"data": [], "isController": false}, {"data": [], "isController": false}, {
-            "data": [],
-            "isController": false
-        }]
-    }, function (index, item) {
+        // Create top5 errors by sampler
+    createTable($("#top5ErrorsBySamplerTable"), {"supportsControllersDiscrimination": false, "overall": {"data": ["Total", 300000, 4211, "Non HTTP response code: org.apache.http.conn.HttpHostConnectException/Non HTTP response message: Connect to localhost:8080 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect", 4211, "", "", "", "", "", "", "", ""], "isController": false}, "titles": ["Sample", "#Samples", "#Errors", "Error", "#Errors", "Error", "#Errors", "Error", "#Errors", "Error", "#Errors", "Error", "#Errors"], "items": [{"data": ["HTTP Request_query", 100000, 942, "Non HTTP response code: org.apache.http.conn.HttpHostConnectException/Non HTTP response message: Connect to localhost:8080 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect", 942, "", "", "", "", "", "", "", ""], "isController": false}, {"data": ["HTTP Request_update", 100000, 1388, "Non HTTP response code: org.apache.http.conn.HttpHostConnectException/Non HTTP response message: Connect to localhost:8080 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect", 1388, "", "", "", "", "", "", "", ""], "isController": false}, {"data": ["HTTP Request_create", 100000, 1881, "Non HTTP response code: org.apache.http.conn.HttpHostConnectException/Non HTTP response message: Connect to localhost:8080 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect", 1881, "", "", "", "", "", "", "", ""], "isController": false}]}, function(index, item){
         return item;
     }, [[0, 0]], 0);
 

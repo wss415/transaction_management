@@ -19,14 +19,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-var Hashtable = (function (UNDEFINED) {
+var Hashtable = (function(UNDEFINED) {
     var FUNCTION = "function", STRING = "string", UNDEF = "undefined";
 
     // Require Array.prototype.splice, Object.prototype.hasOwnProperty and encodeURIComponent. In environments not
     // having these (e.g. IE <= 5), we bail out now and leave Hashtable null.
     if (typeof encodeURIComponent == UNDEF ||
-        Array.prototype.splice === UNDEFINED ||
-        Object.prototype.hasOwnProperty === UNDEFINED) {
+            Array.prototype.splice === UNDEFINED ||
+            Object.prototype.hasOwnProperty === UNDEFINED) {
         return null;
     }
 
@@ -46,7 +46,7 @@ var Hashtable = (function (UNDEFINED) {
             return toStr(obj);
         }
     }
-
+    
     function merge(o1, o2) {
         for (var i in o2) {
             if (o2.hasOwnProperty(i)) {
@@ -65,7 +65,7 @@ var Hashtable = (function (UNDEFINED) {
     }
 
     function createKeyValCheck(kvStr) {
-        return function (kv) {
+        return function(kv) {
             if (kv === null) {
                 throw new Error("null is not a valid " + kvStr);
             } else if (kv === UNDEFINED) {
@@ -84,7 +84,7 @@ var Hashtable = (function (UNDEFINED) {
         this.addEntry(firstKey, firstValue);
 
         if (equalityFunction !== null) {
-            this.getEqualityFunction = function () {
+            this.getEqualityFunction = function() {
                 return equalityFunction;
             };
         }
@@ -93,18 +93,18 @@ var Hashtable = (function (UNDEFINED) {
     var EXISTENCE = 0, ENTRY = 1, ENTRY_INDEX_AND_VALUE = 2;
 
     function createBucketSearcher(mode) {
-        return function (key) {
+        return function(key) {
             var i = this.entries.length, entry, equals = this.getEqualityFunction(key);
             while (i--) {
                 entry = this.entries[i];
-                if (equals(key, entry[0])) {
+                if ( equals(key, entry[0]) ) {
                     switch (mode) {
                         case EXISTENCE:
                             return true;
                         case ENTRY:
                             return entry;
                         case ENTRY_INDEX_AND_VALUE:
-                            return [i, entry[1]];
+                            return [ i, entry[1] ];
                     }
                 }
             }
@@ -113,7 +113,7 @@ var Hashtable = (function (UNDEFINED) {
     }
 
     function createBucketLister(entryProperty) {
-        return function (aggregatedArr) {
+        return function(aggregatedArr) {
             var startIndex = aggregatedArr.length;
             for (var i = 0, entries = this.entries, len = entries.length; i < len; ++i) {
                 aggregatedArr[startIndex + i] = entries[i][entryProperty];
@@ -122,7 +122,7 @@ var Hashtable = (function (UNDEFINED) {
     }
 
     Bucket.prototype = {
-        getEqualityFunction: function (searchValue) {
+        getEqualityFunction: function(searchValue) {
             return (typeof searchValue.equals == FUNCTION) ? equals_fixedValueHasEquals : equals_fixedValueNoEquals;
         },
 
@@ -130,7 +130,7 @@ var Hashtable = (function (UNDEFINED) {
 
         getEntryAndIndexForKey: createBucketSearcher(ENTRY_INDEX_AND_VALUE),
 
-        removeEntryForKey: function (key) {
+        removeEntryForKey: function(key) {
             var result = this.getEntryAndIndexForKey(key);
             if (result) {
                 this.entries.splice(result[0], 1);
@@ -139,15 +139,15 @@ var Hashtable = (function (UNDEFINED) {
             return null;
         },
 
-        addEntry: function (key, value) {
-            this.entries.push([key, value]);
+        addEntry: function(key, value) {
+            this.entries.push( [key, value] );
         },
 
         keys: createBucketLister(0),
 
         values: createBucketLister(1),
 
-        getEntries: function (destEntries) {
+        getEntries: function(destEntries) {
             var startIndex = destEntries.length;
             for (var i = 0, entries = this.entries, len = entries.length; i < len; ++i) {
                 // Clone the entry stored in the bucket before adding to array
@@ -157,10 +157,10 @@ var Hashtable = (function (UNDEFINED) {
 
         containsKey: createBucketSearcher(EXISTENCE),
 
-        containsValue: function (value) {
+        containsValue: function(value) {
             var entries = this.entries, i = entries.length;
             while (i--) {
-                if (value === entries[i][1]) {
+                if ( value === entries[i][1] ) {
                     return true;
                 }
             }
@@ -187,7 +187,7 @@ var Hashtable = (function (UNDEFINED) {
         var bucket = bucketsByHash[hash];
 
         // Check that this is a genuine bucket and not something inherited from the bucketsByHash's prototype
-        return (bucket && (bucket instanceof Bucket)) ? bucket : null;
+        return ( bucket && (bucket instanceof Bucket) ) ? bucket : null;
     }
 
     /*----------------------------------------------------------------------------------------------------------------*/
@@ -213,7 +213,7 @@ var Hashtable = (function (UNDEFINED) {
 
         this.properties = properties;
 
-        this.put = function (key, value) {
+        this.put = function(key, value) {
             checkKey(key);
             checkValue(value);
             var hash = hashCode(key), bucket, bucketEntry, oldValue = null;
@@ -244,7 +244,7 @@ var Hashtable = (function (UNDEFINED) {
             return oldValue;
         };
 
-        this.get = function (key) {
+        this.get = function(key) {
             checkKey(key);
 
             var hash = hashCode(key);
@@ -262,7 +262,7 @@ var Hashtable = (function (UNDEFINED) {
             return null;
         };
 
-        this.containsKey = function (key) {
+        this.containsKey = function(key) {
             checkKey(key);
             var bucketKey = hashCode(key);
 
@@ -272,7 +272,7 @@ var Hashtable = (function (UNDEFINED) {
             return bucket ? bucket.containsKey(key) : false;
         };
 
-        this.containsValue = function (value) {
+        this.containsValue = function(value) {
             checkValue(value);
             var i = buckets.length;
             while (i--) {
@@ -283,17 +283,17 @@ var Hashtable = (function (UNDEFINED) {
             return false;
         };
 
-        this.clear = function () {
+        this.clear = function() {
             buckets.length = 0;
             bucketsByHash = {};
         };
 
-        this.isEmpty = function () {
+        this.isEmpty = function() {
             return !buckets.length;
         };
 
-        var createBucketAggregator = function (bucketFuncName) {
-            return function () {
+        var createBucketAggregator = function(bucketFuncName) {
+            return function() {
                 var aggregated = [], i = buckets.length;
                 while (i--) {
                     buckets[i][bucketFuncName](aggregated);
@@ -306,7 +306,7 @@ var Hashtable = (function (UNDEFINED) {
         this.values = createBucketAggregator("values");
         this.entries = createBucketAggregator("getEntries");
 
-        this.remove = function (key) {
+        this.remove = function(key) {
             checkKey(key);
 
             var hash = hashCode(key), bucketIndex, oldValue = null;
@@ -330,7 +330,7 @@ var Hashtable = (function (UNDEFINED) {
             return oldValue;
         };
 
-        this.size = function () {
+        this.size = function() {
             var total = 0, i = buckets.length;
             while (i--) {
                 total += buckets[i].entries.length;
@@ -340,7 +340,7 @@ var Hashtable = (function (UNDEFINED) {
     }
 
     Hashtable.prototype = {
-        each: function (callback) {
+        each: function(callback) {
             var entries = this.entries(), i = entries.length, entry;
             while (i--) {
                 entry = entries[i];
@@ -348,7 +348,7 @@ var Hashtable = (function (UNDEFINED) {
             }
         },
 
-        equals: function (hashtable) {
+        equals: function(hashtable) {
             var keys, key, val, count = this.size();
             if (count == hashtable.size()) {
                 keys = this.keys();
@@ -364,7 +364,7 @@ var Hashtable = (function (UNDEFINED) {
             return false;
         },
 
-        putAll: function (hashtable, conflictCallback) {
+        putAll: function(hashtable, conflictCallback) {
             var entries = hashtable.entries();
             var entry, key, value, thisValue, i = entries.length;
             var hasConflictCallback = (typeof conflictCallback == FUNCTION);
@@ -374,26 +374,26 @@ var Hashtable = (function (UNDEFINED) {
                 value = entry[1];
 
                 // Check for a conflict. The default behaviour is to overwrite the value for an existing key
-                if (hasConflictCallback && (thisValue = this.get(key))) {
+                if ( hasConflictCallback && (thisValue = this.get(key)) ) {
                     value = conflictCallback(key, thisValue, value);
                 }
                 this.put(key, value);
             }
         },
 
-        clone: function () {
+        clone: function() {
             var clone = new Hashtable(this.properties);
             clone.putAll(this);
             return clone;
         }
     };
 
-    Hashtable.prototype.toQueryString = function () {
+    Hashtable.prototype.toQueryString = function() {
         var entries = this.entries(), i = entries.length, entry;
         var parts = [];
         while (i--) {
             entry = entries[i];
-            parts[i] = encodeURIComponent(toStr(entry[0])) + "=" + encodeURIComponent(toStr(entry[1]));
+            parts[i] = encodeURIComponent( toStr(entry[0]) ) + "=" + encodeURIComponent( toStr(entry[1]) );
         }
         return parts.join("&");
     };

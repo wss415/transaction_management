@@ -7,12 +7,11 @@
 body {
     background-color: #f8f8f8;
 }
-
-.ibox {
-    border: 1px solid black;
-    border-color: #e7eaec;
+.ibox
+{
+	border: 1px solid black;
+	border-color: #e7eaec;
 }
-
 #wrapper {
     width: 100%;
 }
@@ -23,7 +22,7 @@ body {
     background-color: #fff;
 }
 
-@media (min-width: 768px) {
+@media(min-width:768px) {
     #page-wrapper {
         position: inherit;
         margin: 0 0 0 250px;
@@ -115,13 +114,13 @@ body {
     content: "\f104";
 }
 
-.sidebar .active > a > .fa.arrow:before {
+.sidebar .active>a>.fa.arrow:before {
     content: "\f107";
 }
 
 .sidebar .nav-second-level li,
 .sidebar .nav-third-level li {
-    border-bottom: 0 !important;
+    border-bottom: 0!important;
 }
 
 .sidebar .nav-second-level li a {
@@ -132,7 +131,7 @@ body {
     padding-left: 52px;
 }
 
-@media (min-width: 768px) {
+@media(min-width:768px) {
     .sidebar {
         z-index: 1;
         position: absolute;
@@ -258,7 +257,7 @@ table.dataTable thead .sorting:after {
     content: "\f0dc";
     float: right;
     font-family: fontawesome;
-    color: rgba(50, 50, 50, .5);
+    color: rgba(50,50,50,.5);
 }
 
 .btn-circle {
@@ -293,7 +292,7 @@ table.dataTable thead .sorting:after {
     padding-top: 10px;
     padding-bottom: 10px;
     border: 1px solid #ddd;
-    background-color: #eee !important;
+    background-color: #eee!important;
 }
 
 .show-grid {
@@ -357,85 +356,76 @@ table.dataTable thead .sorting:after {
 .panel-yellow a:hover {
     color: #df8a13;
 }
-
 .ui-draggable .panel-heading {
-    cursor: move;
+  cursor: move;
 }
-
 .panel {
-    clear: both;
-    margin-bottom: 25px;
-    margin-top: 25px;
-    padding: 5;
+  clear: both;
+  margin-bottom: 25px;
+  margin-top: 25px;
+  padding: 5;
 }
-
 .panel:after,
 .panel:before {
-    display: table;
+  display: table;
 }
-
 .panel {
-    margin-bottom: 20px;
-    background-color: #fff;
-    border: 1px solid transparent;
-    border-radius: 1px;
-    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+  margin-bottom: 20px;
+  background-color: #fff;
+  border: 1px solid transparent;
+  border-radius: 1px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+          box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }
-
 .panel-heading {
-    padding: 10px 15px;
-    border-bottom: 1px solid transparent;
-    border-top-left-radius: 1px;
-    border-top-right-radius: 1px;
+  padding: 10px 15px;
+  border-bottom: 1px solid transparent;
+  border-top-left-radius: 1px;
+  border-top-right-radius: 1px;
 }
-
 .panel-heading {
-    -moz-border-bottom-colors: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    background-color: #ffffff;
-    border-color: #e7eaec;
-    border-style: solid solid solid;
-    border-width: 4px 0px 1px;
-    color: inherit;
-    margin-bottom: 0;
-    padding: 14px 15px 7px;
-    height: 48px;
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  background-color: #ffffff;
+  border-color: #e7eaec;
+  border-style: solid solid solid;
+  border-width: 4px 0px 1px;
+  color: inherit;
+  margin-bottom: 0;
+  padding: 14px 15px 7px;
+  height: 48px;
 }
-
 .panel-default {
-    border-color: #ddd;
+  border-color: #ddd;
 }
-
 .panel-default > .panel-heading {
-    color: #333;
-    background-color: #f5f5f5;
-    border-color: #e7eaec;
+  color: #333;
+  background-color: #f5f5f5;
+  border-color: #e7eaec;
 }
 
 .panel .open > .dropdown-menu {
-    left: auto;
-    right: 0;
+  left: auto;
+  right: 0;
 }
 
 .ui-sortable .panel-heading {
-    cursor: move;
+  cursor: move;
 }
-
 .panel .ui-state-highlight {
-    background-color: green;
+  background-color: green;
 }
-
-.span-title {
-    font-weight: bold;
-    color: darkslategrey;
+.span-title
+{
+	font-weight: bold;
+	color: darkslategrey;
 }
-
-.dashboard-title {
-    font-weight: bold;
-    color: darkslategrey;
-    font-size: 20px;
-    margin-top: -5px;
+.dashboard-title
+{
+	font-weight: bold;
+	color: darkslategrey;
+	font-size: 20px;
+	margin-top:-5px;
 }

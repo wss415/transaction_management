@@ -15,7 +15,7 @@
     <link href="../../sbadmin2-1.0.7/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- icone onglet -->
-    <link rel="icon" type="image/png" href="icon-apache.png"/>
+    <link rel="icon" type="image/png" href="icon-apache.png" />
 
     <!-- MetisMenu CSS -->
     <link href="../../sbadmin2-1.0.7/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
@@ -28,10 +28,9 @@
     <link href="../../sbadmin2-1.0.7/dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="../../sbadmin2-1.0.7/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet"
-          type="text/css">
+    <link href="../../sbadmin2-1.0.7/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <!-- JQuery UI style -->
+   <!-- JQuery UI style -->
     <link href="../css/jquery-ui.min.css" rel="stylesheet">
     <link href="../css/jquery-ui.structure.min.css" rel="stylesheet">
     <link href="../css/jquery-ui.theme.min.css" rel="stylesheet">
@@ -39,113 +38,109 @@
 
 <body>
 
-<div id="wrapper">
+    <div id="wrapper">
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="../../index.html">Apache JMeter Dashboard</a>
-        </div>
-        <!-- /.navbar-header -->
-
-
-        <div class="navbar-default sidebar" role="navigation">
-            <div class="sidebar-nav navbar-collapse">
-                <ul class="nav" id="side-menu">
-
-                    <li>
-                        <a href="../../index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="OverTime.html">Over Time</a>
-
-                            </li>
-                            <li>
-                                <a href="Throughput.html">Throughput</a>
-                            </li>
-                            <li>
-                                <a href="ResponseTimes.html">Response Times<span class="fa arrow"></span></a>
-
-                                <ul class="nav nav-third-level in" id="submenu">
-                                    <li>
-                                        <a href="ResponseTimes.html#responseTimePercentiles"
-                                           onclick="$('#bodyResponseTimePercentiles').collapse('show');">
-                                            Response Time Percentiles
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="ResponseTimes.html#syntheticResponseTimeDistribution"
-                                           onclick="$('#bodySyntheticResponseTimeDistribution').collapse('show');">
-                                            Response Time Overview
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="ResponseTimes.html#timeVsThreads"
-                                           onclick="$('#bodyTimeVsThreads').collapse('show');">Time Vs Threads</a>
-                                    </li>
-                                    <li>
-                                        <a href="ResponseTimes.html#responseTimeDistribution"
-                                           onclick="$('#bodyResponseTimeDistribution').collapse('show');">
-                                            Response Time Distribution
-                                        </a>
-                                    </li>
-                                </ul>
-
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Customs Graphs<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="CustomsGraphs.html">Over Time</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../index.html">Apache JMeter Dashboard</a>
             </div>
-            <!-- /.sidebar-collapse -->
-        </div>
-        <!-- /.navbar-static-side -->
-    </nav>
+            <!-- /.navbar-header -->
 
-    <div id="page-wrapper">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading" style="text-align:center;">
-                        <p class="dashboard-title">Test and Report information</p>
-                    </div>
-                    <div class="panel-body">
-                        <table id="generalInfos" class="table table-bordered table-condensed ">
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+
+                        <li>
+                            <a href="../../index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="OverTime.html">Over Time</a>
+
+                                </li>
+                                <li>
+                                    <a href="Throughput.html">Throughput</a>
+                                </li>
+                                <li>
+                                    <a href="ResponseTimes.html">Response Times<span class="fa arrow"></span></a>
+
+                                    <ul class="nav nav-third-level in" id="submenu">
+                                        <li>
+                                            <a href="ResponseTimes.html#responseTimePercentiles" onclick="$('#bodyResponseTimePercentiles').collapse('show');">
+                                                Response Time Percentiles
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="ResponseTimes.html#syntheticResponseTimeDistribution" onclick="$('#bodySyntheticResponseTimeDistribution').collapse('show');">
+                                                Response Time Overview
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="ResponseTimes.html#timeVsThreads" onclick="$('#bodyTimeVsThreads').collapse('show');">Time Vs Threads</a>
+                                        </li>
+                                        <li>
+                                            <a href="ResponseTimes.html#responseTimeDistribution" onclick="$('#bodyResponseTimeDistribution').collapse('show');">
+                                                Response Time Distribution
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Customs Graphs<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="CustomsGraphs.html">Over Time</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                     <div class="panel panel-default" >
+                        <div class="panel-heading" style="text-align:center;">
+                           <p class="dashboard-title">Test and Report information</p>
+                        </div>
+                        <div class="panel-body">
+                        <table id="generalInfos" class="table table-bordered table-condensed " >
                             <tr>
                                 <td>File:</td>
-                                <td>"result.csv"</td>
+                                <td>"result10.csv"</td>
                             </tr>
                             <tr>
                                 <td>Start Time:</td>
-                                <td>"3/12/25 12:41 AM"</td>
+                                <td>"3/13/25 12:19 AM"</td>
                             </tr>
                             <tr>
                                 <td>End Time:</td>
-                                <td>"3/12/25 12:49 AM"</td>
+                                <td>"3/13/25 12:22 AM"</td>
                             </tr>
-                            <tr>
-                                <td>Filter for display:</td>
-                                <td>""</td>
-                            </tr>
+                                <tr>
+                                    <td>Filter for display:</td>
+                                    <td>""</td>
+                                </tr>
                         </table>
-                    </div>
+                     </div>
                 </div>
             </div>
             <!-- /.row -->
@@ -153,37 +148,23 @@
                 <div class="col-lg-12 portlet" id="responseTimePercentiles">
                     <div class="panel panel-default">
                         <div class="panel-heading portlet-header">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> <span type="button"
-                                                                          class="span-title dropdown-toggle click-title"
-                                                                          data-toggle="collapse"
-                                                                          href="#bodyResponseTimePercentiles"
-                                                                          aria-expanded="true"
-                                                                          aria-controls="bodyResponseTimePercentiles">Response Time Percentiles</span>
+                            <i class="fa fa-bar-chart-o fa-fw"></i>  <span type="button" class="span-title dropdown-toggle click-title" data-toggle="collapse" href="#bodyResponseTimePercentiles" aria-expanded="true" aria-controls="bodyResponseTimePercentiles">Response Time Percentiles</span>
                             <div class="pull-right">
                                 <div class="btn-group">
                                     <a class="drag btn btn-link btn-xs">
                                         <i class="glyphicon glyphicon-resize-vertical"></i>
                                     </a>
-                                    <button type="button" class="btn btn-link btn-xs dropdown-toggle"
-                                            data-toggle="dropdown">
+                                    <button type="button" class="btn btn-link btn-xs dropdown-toggle" data-toggle="dropdown">
                                         <i class="fa fa-wrench"></i>
                                     </button>
                                     <ul class="dropdown-menu dropdown-user">
-                                        <li><a href="#responseTimePercentiles"
-                                               onClick="checkAll('choicesResponseTimePercentiles');">Display all
-                                            samples</a>
+                                        <li><a href="#responseTimePercentiles" onClick="checkAll('choicesResponseTimePercentiles');">Display all samples</a>
                                         </li>
-                                        <li><a href="#responseTimePercentiles"
-                                               onClick="uncheckAll('choicesResponseTimePercentiles');">Hide all
-                                            samples</a>
+                                        <li><a href="#responseTimePercentiles" onClick="uncheckAll('choicesResponseTimePercentiles');">Hide all samples</a>
                                         </li>
-                                        <li><a href="#responseTimePercentiles"
-                                               onclick="exportToPNG('flotResponseTimesPercentiles', this);">Save as
-                                            PNG</a></li>
+                                        <li><a href="#responseTimePercentiles" onclick="exportToPNG('flotResponseTimesPercentiles', this);">Save as PNG</a></li>
                                     </ul>
-                                    <button type="button" class="btn btn-link btn-xs dropdown-toggle"
-                                            data-toggle="collapse" href="#bodyResponseTimePercentiles"
-                                            aria-expanded="true" aria-controls="bodyResponseTimePercentiles">
+                                    <button type="button" class="btn btn-link btn-xs dropdown-toggle" data-toggle="collapse" href="#bodyResponseTimePercentiles" aria-expanded="true" aria-controls="bodyResponseTimePercentiles">
                                         <i class="fa fa-chevron-up"></i>
                                     </button>
                                 </div>
@@ -193,12 +174,10 @@
                         <div class="collapse in portlet-content" id="bodyResponseTimePercentiles">
                             <div class="panel-body" id="collapseResponseTimePercentiles">
                                 <div class="flot-chart">
-                                    <div class="flot-chart-content" id="flotResponseTimesPercentiles"
-                                         style="float: left; width:80%;"></div>
+                                    <div class="flot-chart-content" id="flotResponseTimesPercentiles" style="float: left; width:80%;"></div>
                                     <div style="float:left;margin-left:5px">
                                         <p>Zoom :</p>
-                                        <div id="overviewResponseTimesPercentiles"
-                                             style="width:190px;height:100px;"></div>
+                                        <div id="overviewResponseTimesPercentiles" style="width:190px;height:100px;"></div>
                                     </div>
                                 </div>
                             </div>
@@ -216,37 +195,23 @@
                 <div class="col-lg-12 portlet" id="syntheticResponseTimeDistribution">
                     <div class="panel panel-default">
                         <div class="panel-heading portlet-header">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> <span type="button"
-                                                                          class="dropdown-toggle click-title span-title"
-                                                                          data-toggle="collapse"
-                                                                          href="#bodySyntheticResponseTimeDistribution"
-                                                                          aria-expanded="true"
-                                                                          aria-controls="bodySyntheticResponseTimeDistribution">Response Time Overview</span>
+                            <i class="fa fa-bar-chart-o fa-fw"></i>  <span type="button" class="dropdown-toggle click-title span-title" data-toggle="collapse" href="#bodySyntheticResponseTimeDistribution" aria-expanded="true" aria-controls="bodySyntheticResponseTimeDistribution">Response Time Overview</span>
                             <div class="pull-right">
                                 <div class="btn-group">
                                     <a class="drag btn btn-link btn-xs">
                                         <i class="glyphicon glyphicon-resize-vertical"></i>
                                     </a>
-                                    <button type="button" class="btn btn-link btn-xs dropdown-toggle"
-                                            data-toggle="dropdown">
+                                    <button type="button" class="btn btn-link btn-xs dropdown-toggle" data-toggle="dropdown">
                                         <i class="fa fa-wrench"></i>
                                     </button>
                                     <ul class="dropdown-menu dropdown-user">
-                                        <li><a href="#syntheticResponseTimeDistribution"
-                                               onClick="checkAll('choicesSyntheticResponseTimeDistribution');">Display
-                                            all samples</a>
+                                        <li><a href="#syntheticResponseTimeDistribution" onClick="checkAll('choicesSyntheticResponseTimeDistribution');">Display all samples</a>
                                         </li>
-                                        <li><a href="#syntheticResponseTimeDistribution"
-                                               onClick="uncheckAll('choicesSyntheticResponseTimeDistribution');">Hide
-                                            all samples</a>
+                                        <li><a href="#syntheticResponseTimeDistribution" onClick="uncheckAll('choicesSyntheticResponseTimeDistribution');">Hide all samples</a>
                                         </li>
-                                        <li><a href="#syntheticResponseTimeDistribution"
-                                               onclick="exportToPNG('flotSyntheticResponseTimesDistribution', this);">Save
-                                            as PNG</a></li>
+                                        <li><a href="#syntheticResponseTimeDistribution" onclick="exportToPNG('flotSyntheticResponseTimesDistribution', this);">Save as PNG</a></li>
                                     </ul>
-                                    <button type="button" class="btn btn-link btn-xs dropdown-toggle"
-                                            data-toggle="collapse" href="#bodySyntheticResponseTimeDistribution"
-                                            aria-expanded="true" aria-controls="bodySyntheticResponseTimeDistribution">
+                                    <button type="button" class="btn btn-link btn-xs dropdown-toggle" data-toggle="collapse" href="#bodySyntheticResponseTimeDistribution" aria-expanded="true" aria-controls="bodySyntheticResponseTimeDistribution">
                                         <i class="fa fa-chevron-down"></i>
                                     </button>
                                 </div>
@@ -274,33 +239,23 @@
                 <div class="col-lg-12 portlet" id="timeVsThreads">
                     <div class="panel panel-default">
                         <div class="panel-heading portlet-header">
-                            <i class="fa fa-bar-chart-o fa-fw"></i><span type="button"
-                                                                         class="span-title dropdown-toggle click-title"
-                                                                         data-toggle="collapse"
-                                                                         href="#bodyTimeVsThreads" aria-expanded="true"
-                                                                         aria-controls="bodyTimeVsThreads">Time Vs Threads</span>
-                            <div class="pull-right">
+                           <i class="fa fa-bar-chart-o fa-fw"></i><span type="button" class="span-title dropdown-toggle click-title" data-toggle="collapse" href="#bodyTimeVsThreads" aria-expanded="true" aria-controls="bodyTimeVsThreads">Time Vs Threads</span>
+                           <div class="pull-right">
                                 <div class="btn-group">
                                     <a class="drag btn btn-link btn-xs">
                                         <i class="glyphicon glyphicon-resize-vertical"></i>
                                     </a>
-                                    <button type="button" class="btn btn-link btn-xs dropdown-toggle"
-                                            data-toggle="dropdown">
+                                    <button type="button" class="btn btn-link btn-xs dropdown-toggle" data-toggle="dropdown">
                                         <i class="fa fa-wrench"></i>
                                     </button>
                                     <ul class="dropdown-menu dropdown-user">
-                                        <li><a href="#timeVsThreads" onClick="checkAll('choicesTimeVsThreads');">Display
-                                            all samples</a>
+                                        <li><a href="#timeVsThreads" onClick="checkAll('choicesTimeVsThreads');">Display all samples</a>
                                         </li>
-                                        <li><a href="#timeVsThreads" onClick="uncheckAll('choicesTimeVsThreads');">Hide
-                                            all samples</a>
+                                        <li><a href="#timeVsThreads" onClick="uncheckAll('choicesTimeVsThreads');">Hide all samples</a>
                                         </li>
-                                        <li><a href="#timeVsThreads" onclick="exportToPNG('flotTimesVsThreads', this);">Save
-                                            as PNG</a></li>
+                                        <li><a href="#timeVsThreads" onclick="exportToPNG('flotTimesVsThreads', this);">Save as PNG</a></li>
                                     </ul>
-                                    <button type="button" class="btn btn-link btn-xs dropdown-toggle"
-                                            data-toggle="collapse" href="#bodyTimeVsThreads" aria-expanded="true"
-                                            aria-controls="bodyTimeVsThreads">
+                                    <button type="button" class="btn btn-link btn-xs dropdown-toggle" data-toggle="collapse" href="#bodyTimeVsThreads" aria-expanded="true" aria-controls="bodyTimeVsThreads">
                                         <i class="fa fa-chevron-down"></i>
                                     </button>
                                 </div>
@@ -310,8 +265,7 @@
                         <div class="collapse out portlet-content" id="bodyTimeVsThreads">
                             <div class="panel-body" id="collapseTimeVsThreads">
                                 <div class="flot-chart">
-                                    <div class="flot-chart-content" id="flotTimesVsThreads"
-                                         style="float: left; width:80%;"></div>
+                                    <div class="flot-chart-content" id="flotTimesVsThreads" style="float: left; width:80%;"></div>
                                     <div style="float:left;margin-left:5px">
                                         <p>Zoom :</p>
                                         <div id="overviewTimesVsThreads" style="width:190px;height:100px;"></div>
@@ -330,37 +284,23 @@
                 <div class="col-lg-12 portlet" id="responseTimeDistribution">
                     <div class="panel panel-default">
                         <div class="panel-heading portlet-header">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> <span type="button"
-                                                                          class="dropdown-toggle click-title span-title"
-                                                                          data-toggle="collapse"
-                                                                          href="#bodyResponseTimeDistribution"
-                                                                          aria-expanded="true"
-                                                                          aria-controls="bodyResponseTimeDistribution">Response Time Distribution</span>
-                            <div class="pull-right">
+                           <i class="fa fa-bar-chart-o fa-fw"></i> <span type="button" class="dropdown-toggle click-title span-title" data-toggle="collapse" href="#bodyResponseTimeDistribution" aria-expanded="true" aria-controls="bodyResponseTimeDistribution">Response Time Distribution</span>
+                           <div class="pull-right">
                                 <div class="btn-group">
                                     <a class="drag btn btn-link btn-xs">
                                         <i class="glyphicon glyphicon-resize-vertical"></i>
                                     </a>
-                                    <button type="button" class="btn btn-link btn-xs dropdown-toggle"
-                                            data-toggle="dropdown">
+                                    <button type="button" class="btn btn-link btn-xs dropdown-toggle" data-toggle="dropdown">
                                         <i class="fa fa-wrench"></i>
                                     </button>
                                     <ul class="dropdown-menu dropdown-user">
-                                        <li><a href="#responseTimeDistribution"
-                                               onClick="checkAll('choicesResponseTimeDistribution');">Display all
-                                            samples</a>
+                                        <li><a href="#responseTimeDistribution" onClick="checkAll('choicesResponseTimeDistribution');">Display all samples</a>
                                         </li>
-                                        <li><a href="#responseTimeDistribution"
-                                               onClick="uncheckAll('choicesResponseTimeDistribution');">Hide all
-                                            samples</a>
+                                        <li><a href="#responseTimeDistribution" onClick="uncheckAll('choicesResponseTimeDistribution');">Hide all samples</a>
                                         </li>
-                                        <li><a href="#responseTimeDistribution"
-                                               onclick="exportToPNG('flotResponseTimeDistribution', this);">Save as
-                                            PNG</a></li>
+                                        <li><a href="#responseTimeDistribution" onclick="exportToPNG('flotResponseTimeDistribution', this);">Save as PNG</a></li>
                                     </ul>
-                                    <button type="button" class="btn btn-link btn-xs dropdown-toggle"
-                                            data-toggle="collapse" href="#bodyResponseTimeDistribution"
-                                            aria-expanded="true" aria-controls="bodyResponseTimeDistribution">
+                                    <button type="button" class="btn btn-link btn-xs dropdown-toggle" data-toggle="collapse" href="#bodyResponseTimeDistribution" aria-expanded="true" aria-controls="bodyResponseTimeDistribution">
                                         <i class="fa fa-chevron-down"></i>
                                     </button>
                                 </div>
@@ -395,7 +335,7 @@
     </div>
     <!-- /#wrapper -->
 
-    <!-- jQuery -->
+     <!-- jQuery -->
     <script src="../../sbadmin2-1.0.7/bower_components/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
