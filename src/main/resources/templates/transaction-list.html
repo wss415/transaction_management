@@ -147,8 +147,8 @@
                     <div class="mb-3">
                         <label class="form-label">Type</label>
                         <select class="form-select" name="type" required>
-                            <option value="INCOME">Income</option>
-                            <option value="EXPENSE">Expense</option>
+                            <option value="INCOME">INCOME</option>
+                            <option value="EXPENSE">EXPENSE</option>
                         </select>
                     </div>
                     <div class="mb-3">
@@ -172,13 +172,9 @@
         const dataIdInput = self.closest("tr").querySelectorAll("input.data-id");
         const id = dataIdInput[0].value;
         fetch(`/api/v1/transactions/${id}`)
-            .then(response => {
-                if (response.ok) {
-                    response.json()
-                } else {
-                    alert(response.body);
-                }
-            })
+            .then(response =>
+                response.json()
+            )
             .then(data => {
                 document.getElementById('transactionId').value = data.id;
                 document.querySelector('input[name="amount"]').value = data.amount;
