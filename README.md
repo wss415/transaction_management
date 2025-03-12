@@ -5,6 +5,39 @@
 Create a simple application related to trasaction management within a banking system.The application should enable users
 to record,view,and manage financial transactions.
 
+## Project Dependency
+
+```
+org.projectlombok:lombok # use to generate object setter,getter and constructor etc.
+```
+
+## Project startup
+
+```shell
+# enter project root path
+cd transaction_management
+
+# execute 'chmod' to take build-startup.sh executable
+chmod +x build-startup.sh
+
+# run build-startup.sh
+./build-startup.sh
+
+# check service container state
+docker ps | grep 'transaction'
+```
+
+## Visit Web Site
+```shell
+http://localhost:8080/
+http://localhost:8080/transactions
+http://localhost:8080/transactions?pageIndex=1&pageSize=10
+```
+
+## Performance Test Report
+The performance test report is located in the /report directory. Open the index.html file to view the report.
+
+
 ## Monolithic Architecture
 
 ### Explicit Architecture
@@ -47,32 +80,3 @@ The service uses the CQRS architecture, which separates commands from queries.
 * **query** query methods are side-effect free and do not affect the state of the system. Therefore, the query logic
   only reaches the application layer and does not descend to the domain layer. The query logic can be implemented using
   various techniques such as join table queries with various SQL.
-
-## Project Dependency
-
-```
-org.projectlombok:lombok # use to generate object setter,getter and constructor etc.
-```
-
-## Project startup
-
-```shell
-# enter project root path
-cd transaction_management
-
-# execute 'chmod' to take build-startup.sh executable
-chmod +x build-startup.sh
-
-# run build-startup.sh
-./build-startup.sh
-
-# check service container state
-docker ps | grep 'transaction'
-```
-
-## Visit Web Site
-```shell
-http://localhost:8080/
-http://localhost:8080/transactions
-http://localhost:8080/transactions?pageIndex=1&pageSize=10
-```
